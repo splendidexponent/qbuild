@@ -1,0 +1,21 @@
+{
+  "name": "@splendidexponent/qbuild",
+  "version": "0.1.0",
+  "description": "A SQL Query Builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/splendidexponent/qbuild.git"
+  },
+  "keywords": [
+    "sql"
+  ],
+  "author": "splendidexponent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/splendidexponent/qbuild/issues"
+  }
+}
