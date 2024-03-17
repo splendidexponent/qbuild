@@ -17,5 +17,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/splendidexponent/qbuild/issues"
+  },
+  "devDependencies": {
+    "sqlite3": "^5.1.7"
   }
 }
