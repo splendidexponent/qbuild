@@ -17,5 +17,6 @@ test('successfully fails to create a table', async ()=>{
   });
 
   assert.strictEqual(fail, false);
+  assert.strictEqual(qbuild.lastStatement, "CREATE TABLE Hello ( name string NOT NULL );");
   assert.strictEqual(qbuild.lastErrorMessage, "SQLITE_ERROR: table Hello already exists");
 });
