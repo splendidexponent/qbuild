@@ -4,6 +4,7 @@ const CreateTableBuilder = require('./builder/create_table_builder');
 const InsertBuilder = require('./builder/insert_builder');
 const SelectBuilder = require('./builder/select_builder');
 const UpdateBuilder = require('./builder/update_builder');
+const DeleteBuilder = require('./builder/delete_builder');
 
 class QBuild{
   constructor(){
@@ -81,6 +82,13 @@ class QBuild{
   update(tableName, values){
     return new Promise((resolve)=>{
       const builder = new UpdateBuilder(tableName, values);
+      this.run(builder._build(), resolve);
+    });
+  }
+
+  delete(tableName){
+    return new Promise((resolve)=>{
+      const builder = new DeleteBuilder(tableName);
       this.run(builder._build(), resolve);
     });
   }
