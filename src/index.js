@@ -3,6 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 const CreateTableBuilder = require('./builder/create_table_builder');
 const InsertBuilder = require('./builder/insert_builder');
 const SelectBuilder = require('./builder/select_builder');
+const UpdateBuilder = require('./builder/update_builder');
 
 class QBuild{
   constructor(){
@@ -74,6 +75,13 @@ class QBuild{
     return new Promise((resolve)=>{
       const builder = new SelectBuilder(tableName, columns);
       this.fetch(builder._build(), resolve);
+    });
+  }
+
+  update(tableName, values){
+    return new Promise((resolve)=>{
+      const builder = new UpdateBuilder(tableName, values);
+      this.run(builder._build(), resolve);
     });
   }
 }

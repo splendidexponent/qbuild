@@ -1,24 +1,12 @@
-class InsertBuilder{
+const BaseBuilder = require("./base_builder");
+
+class InsertBuilder extends BaseBuilder{
   constructor(tableName, values){
+    super();
+    
     this.tableName = tableName;
     this.columns = Object.keys(values);
     this.values = this.addQuotes(Object.values(values));
-  }
-
-  addQuotes(values){
-    return values.map((value)=>{
-      if(value == undefined || value == null){
-        return "null";
-      }
-
-      switch(typeof value){
-        case 'string':
-          return `"${value}"`;
-
-        default:
-          return value;
-      }
-    });
   }
 
   _build(){

@@ -1,5 +1,9 @@
-class SelectBuilder{
+const BaseBuilder = require("./base_builder");
+
+class SelectBuilder extends BaseBuilder{
   constructor(tableName, columns){
+    super();
+
     this.tableName = tableName;
     this.columns = this.addAliasNames(columns);
   }

@@ -1,5 +1,9 @@
-class CreateTableBuilder{
+const BaseBuilder = require("./base_builder");
+
+class CreateTableBuilder extends BaseBuilder{
   constructor(tableName){
+    super();
+
     this.tableName = tableName;
     this.sqlParts = [];
   }
