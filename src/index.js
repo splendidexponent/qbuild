@@ -2,6 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 
 const CreateTableBuilder = require('./builder/create_table_builder');
 const InsertBuilder = require('./builder/insert_builder');
+const SelectBuilder = require('./builder/select_builder');
 
 class QBuild{
   constructor(){
@@ -38,6 +39,22 @@ class QBuild{
     });
   }
 
+  fetch(sql, resolve){
+    this.log(sql);
+    
+    this.lastStatement = sql;
+    this.connection.all(sql, (error, rows)=>{
+      if(error){
+        this.lastErrorMessage = error.message;
+        this.log(this.lastErrorMessage);
+
+        resolve(false);
+      } else {
+        resolve(rows);
+      }
+    });
+  }
+
   createTable(tableName, settingsCb){
     return new Promise((resolve)=>{
       const builder = new CreateTableBuilder(tableName);
@@ -50,6 +67,13 @@ class QBuild{
     return new Promise((resolve)=>{
       const builder = new InsertBuilder(tableName, values);
       this.run(builder._build(), resolve);
+    });
+  }
+
+  select(tableName, columns){
+    return new Promise((resolve)=>{
+      const builder = new SelectBuilder(tableName, columns);
+      this.fetch(builder._build(), resolve);
     });
   }
 }
